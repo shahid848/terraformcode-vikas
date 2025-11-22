@@ -17,11 +17,17 @@ provider "aws" {
 module "s3_bucket" {
   source = "terraform-aws-modules/s3-bucket/aws"
 
-  bucket = "bucket = "my-s3-shahid-terraform-bucket-2025"
-  acl    = "public-read"
+  bucket = "my-s3-shahid-terraform-bucket-2025"
+
+  # Private bucket (Recommended)
+  acl = "private"
 
   versioning = {
     enabled = true
   }
 
+  # Public access completely blocked
+  block_public_acls       = true
+  block_public_policy     = true
+  restrict_public_buckets = true
 }
