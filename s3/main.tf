@@ -19,14 +19,15 @@ module "s3_bucket" {
 
   bucket = "my-s3-shahid-terraform-bucket-2025"
 
-  # Private bucket (Recommended)
-  acl = "private"
-
   versioning = {
     enabled = true
   }
 
-  # Public access completely blocked
+  # Enable S3 recommended: ACL Disabled + Ownership enforced
+  control_object_ownership = true
+  object_ownership         = "BucketOwnerEnforced"
+
+  # Public access blocked
   block_public_acls       = true
   block_public_policy     = true
   restrict_public_buckets = true
